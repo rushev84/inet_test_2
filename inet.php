@@ -27,56 +27,23 @@ $array = [
 
 // Решение:
 
-//function arrayUniqueKey($array, $key) {
-//    $ar = [];
-//    $array_keys = [];
-//    $count = 0;
-//
-//    foreach($array as $item) {
-//        if (!in_array($item[$key], $array_keys)) {
-//            $array_keys[$count] = $item[$key];
-//            $ar[$count] = $item;
-//        }
-//        $count++;
-//    }
-//    return $ar;
-//}
-//
-//$array_unique = arrayUniqueKey($array, 'id');
-//prePrint($array_unique);
-//
-// Add comment to to to ...
-
-function arrayUniqueKey($array, $key)
-{
-
+function arrayUniqueKey($array, $key) {
     $ar = [];
+    $array_keys = [];
+    $count = 0;
 
-    prePrint($array);
-    
-    $array_unique_ids = array_unique(array_column($array, $key));
-    prePrint($array_unique_ids);
-
-    $ar = array_map(function ($item) use ($array, $key) {
-        return $item;
-    }, $array_unique_ids);
-
-//    $array_count_of_unique_ids = array_count_values($array_ids);
-//    prePrint($array_count_of_unique_ids);
-
-//    $ar = array_filter($array, function ($item) use ($array_count_of_unique_ids, $key) {
-//        if ($array_count_of_unique_ids[$item[$key]] === 1) {
-//            return true;
-//        }
-//    });
-
+    foreach($array as $item) {
+        if (!in_array($item[$key], $array_keys)) {
+            $array_keys[$count] = $item[$key];
+            $ar[$count] = $item;
+        }
+        $count++;
+    }
     return $ar;
-
 }
 
 $array_unique = arrayUniqueKey($array, 'id');
 prePrint($array_unique);
-
 
 // -----------------------------------------------------------------------
 // 2. Отсортировать многомерный массив по ключу (любому)
@@ -90,41 +57,41 @@ $array = [
     ['id' => 5, 'date' => "06.06.2020", 'name' => "test3"],
 ];
 
-//function compare($key)
-//{
-//    return function ($a, $b) use ($key) {
-//        return strnatcmp($a[$key], $b[$key]);
-//    };
-//}
-//
-//usort($array, compare('id'));
-//prePrint($array);
+function compare($key)
+{
+    return function ($a, $b) use ($key) {
+        return strnatcmp($a[$key], $b[$key]);
+    };
+}
+
+usort($array, compare('id'));
+prePrint($array);
 
 // -----------------------------------------------------------------------
 // 3. Вернуть из массива только элементы, удовлетворяющие внешним условиям (например элементы с определенным id)
 // Решение:
 
-//$ar_filtered = array_filter($array, function ($item) {
-//    if ($item['id'] === 23) {
-//        return true;
-//    }
-//});
-//
-//prePrint($ar_filtered);
+$ar_filtered = array_filter($array, function ($item) {
+    if ($item['id'] === 23) {
+        return true;
+    }
+});
+
+prePrint($ar_filtered);
 
 // -----------------------------------------------------------------------
 // 4. Изменить в массиве значения и ключи (использовать name => id в качестве пары ключ => значение)
 
 // Решение:
 
-//function arMap($ar, $key)
-//{
-//    return array_map(function ($item) use ($key) {
-//        return $item[$key];
-//    }, $ar);
-//}
-//
-//$ar_combined = array_combine(arMap($array, 'name'), arMap($array, 'id'));
-//
-//prePrint($ar_combined);
+function arMap($ar, $key)
+{
+    return array_map(function ($item) use ($key) {
+        return $item[$key];
+    }, $ar);
+}
+
+$ar_combined = array_combine(arMap($array, 'name'), arMap($array, 'id'));
+
+prePrint($ar_combined);
 
