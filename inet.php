@@ -19,6 +19,10 @@ $array = [
     ['id' => 40, 'date' => "05.03.2020", 'name' => "test4"],
     ['id' => 23, 'date' => "11.11.2020", 'name' => "test4"],
     ['id' => 5, 'date' => "06.06.2020", 'name' => "test3"],
+    ['id' => 5, 'date' => "06.06.2020", 'name' => "test3"],
+    ['id' => 23, 'date' => "11.11.2020", 'name' => "test4"],
+    ['id' => 24, 'date' => "11.11.2020", 'name' => "test4"],
+    ['id' => 24, 'date' => "11.11.2020", 'name' => "test4"],
 ];
 
 // Все решения постараться реализовать НЕ используя циклы for / foreach.
@@ -36,8 +40,9 @@ function arrayUniqueKey($array, $key) {
         if (!in_array($item[$key], $array_keys)) {
             $array_keys[$count] = $item[$key];
             $ar[$count] = $item;
+            $count++;
         }
-        $count++;
+
     }
     return $ar;
 }
