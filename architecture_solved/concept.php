@@ -1,12 +1,21 @@
 <?php
-class Concept {
+
+class Concept
+{
     private $client;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->client = new \GuzzleHttp\Client();
     }
 
-    public function getUserData() {
+    public function getSecretKey()
+    {
+
+    }
+
+    public function getUserData()
+    {
         $params = [
             'auth' => ['user', 'pass'],
             'token' => $this->getSecretKey()
